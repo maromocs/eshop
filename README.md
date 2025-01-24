@@ -46,7 +46,7 @@ Gaming Universe is a mock online shop designed purely for educational purposes. 
 3. **Create & Import the Database**
    - Open your browser and go to: [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
    - Create a new database (for example, `gaming_universe`).
-   - Click on the **Import** tab and choose the `all_in_sql.sql` file located inside the `sql` folder.
+   - Click on the **Import** tab and choose the `allin.sql` file located inside the `sql` folder.
    - Click **Go** to import all the necessary tables and data.
 
 4. **Access the Website**

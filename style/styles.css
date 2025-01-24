@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url('../images/background_desktop.jpg') no-repeat fixed;
+  background-size: cover;
+}
+
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+/* Apply the font to your select box and related elements */
+.select-items div,
+.select-selected {
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: bold;
+  color: #333; /* Text color */
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  text-align: left;
+  background-color: #ffffff;
+  text-transform: uppercase; /* Make all text uppercase */
+}
+
+.select-selected {
+  background-color: #f2f2f2;
+  position: relative;
+  padding-right: 30px; /* Space for the arrow */
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #333 transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #333 transparent;
+  top: 7px;
+}
+
+.select-items {
+  position: absolute;
+  background-color: #ffffff;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.logo-container {
+  position: absolute;
+  padding: 2rem;
+}
+
+img.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 35rem;
+  height: 40rem;
+  background: #fff;
+  text-align: center;
+}
+
+.container h1 {
+  margin-top: 6rem;
+  font-size: 2rem;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+form {
+  padding-top: 4rem;
+  width: 80%;
+  margin: auto;
+  opacity: 0;
+  animation: fadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) 0.175s 1 normal forwards;
+}
+
+form .checkbox {
+  position: relative;
+  text-align: left;
+  height: 2.4em;
+}
+
+form .checkbox label {
+  text-transform: none;
+  margin: -4px 20px;
+}
+
+.checkbox-color {
+  filter: hue-rotate(145deg);
+}
+
+input[type=checkbox] {
+  position: relative;
+  top: 50%;
+  transform: scale(2);
+  font-size: 1em;
+  height: auto;
+  margin-left: 8px;
+}
+
+form .input-container {
+  position: relative;
+  height: 4em; 
+}
+
+form .input-container {
+  position: relative;
+  height: 4em;
+  background: rgba(126,126,126,0.1);
+  border: 2px solid rgba(126,126,126,0.1);
+  margin-bottom: 16px;
+  border-bottom-width: 1px;
+}
+
+form .input-value {
+  float: right;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+form .input-value label, form .input-value input {
+  padding: 1px 0.4em 1px 0.4em;
+}
+
+form .input-value + * {
+  clear: both;
+}
+
+form .input-value {
+  width: 100%;
+}
+
+form input {
+  display: block;
+  position: absolute;
+  height: 2.4em;
+  border: 0;
+  background: none;
+  z-index: 1;
+  font-size: 1.6em;
+  font-weight: bold;
+  font-family: 'Maven', sans-serif;
+  letter-spacing: 0.012em;
+  color: #333;
+}
+
+form input[type=text], form input[type=password] {
+  width: 100%;
+  padding-top: 1em;
+}
+
+form label {
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  margin-top: 2px;
+  padding: 1px;
+  color: #525252;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  animation-name: labelIn;
+  animation-duration: 0.2s;
+  animation-direction: reverse;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+form input:focus + label, form input:valid + label {
+  font-weight: bold;
+  animation-name: labelOut;
+  animation-duration: 0.2s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes labelIn {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    padding-left: 1em;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    padding-left: 1em;
+  }
+  50.01% {
+    font-size: 0.85em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+  }
+  100% {
+    font-size: 0.85em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+  }
+}
+
+@keyframes labelOut {
+  0% {
+    left: 1px;
+    opacity: 1;
+    top: 1.2em;
+    font-size: 1em;
+    padding-left: 1em;
+  }
+  50% {
+    font-size: 1em;
+    left: 1em;
+    opacity: 0;
+    top: 1.2em;
+    padding-left: 1em;
+  }
+  50.01% {
+    font-size: 0.85em;
+    left: 1em;
+    opacity: 0;
+    top: 0.2em;
+  }
+  100% {
+    font-size: 0.85em;
+    opacity: 1;
+    left: 1px;
+    top: 0.2em;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.social {
+  display: flex;
+}
+
+.social > div {
+  width: 33.3%;
+  height: 3em;
+  border: 2px solid rgba(0,0,0,0.05);
+  border-radius: 4px;
+  margin: 10px;
+  line-height: 3em;
+}
+
+.social > div:first-child {
+  margin-left: 0;
+}
+
+.social > div:last-child {
+  margin-right: 0;
+}
+
+.social > div i {
+  font-size: 26px;
+}
+
+form .button {
+  position: relative;
+  margin-top: 2.5rem;
+}
+
+form .button .btn {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 30%;
+  color: #e8e8e8;
+  background: #d13639;
+  border: 0;
+  font-size: 3rem;
+}
+
+form .button .btn:hover {
+  background: #bc252a;
+  cursor: pointer;
+  transform: scale(1.05); /* Slightly increase the button size on hover */
+}
+
+form .bottom-links {
+  position: relative;
+  margin-top: 3em;
+  text-transform: uppercase;
+  text-align: center; /* Center text for smaller screens */
+}
+
+form .bottom-links > p {
+  font-family: 'Maven Pro', sans-serif;
+  padding: 2px;
+  font-size: 1rem; /* Default font size */
+  margin-bottom: 1rem; /* Add some space between paragraph and links */
+}
+
+form .bottom-links a {
+  text-decoration: none;
+  color: #7a7a7a;
+  margin: 0 10px; /* Space between links */
+  font-size: 1rem; /* Default font size */
+}
+
+form .bottom-links a:hover {
+  color: #000;
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 25rem;
+    height: 40rem;
+  }
+  .container h1 {
+    margin-top: 2rem !important;
+  }
+  form {
+    padding-top: 1rem !important;
+  }
+  form .button {
+    margin-top: 1.5rem !important;
+  }
+  form .bottom-links {
+    margin-top: 1em !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    width: 20rem;
+    height: 36rem;
+  }
+  .container h1 {
+    margin-top: 1rem !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    width: 18rem;
+    height: 30rem;
+  }
+  .container h1 {
+    margin-top: 0.5rem !important;
+  }
+  form .button {
+    margin-top: 0.5rem !important;
+  }
+  form .bottom-links {
+    margin-top: 0 !important;
+  }
+}
+
+
+/* Make button responsive */
+@media (max-width: 768px) {
+  form .button .btn {
+    width: 5.5rem; /* Decrease width for smaller screens */
+    height: 5.5rem; /* Decrease height */
+    font-size: 3rem; /* Smaller font size */
+  }
+}
+
+@media (max-width: 480px) {
+  form .button .btn {
+    width: 5.5rem; /* Further decrease width for very small screens */
+    height: 5.5rem; /* Further decrease height */
+    font-size: 3rem; /* Smaller font size */
+  }
+}
+
+@media (max-width: 768px) {
+  form .bottom-links {
+    margin-top: 2em; /* Slightly reduce the margin for smaller screens */
+  }
+
+  form .bottom-links > p {
+    font-size: 0.9rem; /* Smaller font size for paragraph */
+  }
+
+  form .bottom-links a {
+    font-size: 1.2rem; /* Reduce font size of links */
+    margin: 0 8px; /* Less space between links */
+  }
+}
+
+@media (max-width: 480px) {
+  form .bottom-links {
+    margin-top: 1.5em; /* Even smaller margin for very small screens */
+  }
+
+  form .bottom-links > p {
+    font-size: 0.8rem; /* Further reduce the font size of the paragraph */
+  }
+
+  form .bottom-links a {
+    font-size: 1.2rem; /* Further reduce the font size of the links */
+    margin: 0 6px; /* Reduce space between links */
+  }
+}
+
+*:focus {
+  outline-color: #000;
+}
+
+/* Modal background styling */
+.modal1.mfp-hide {
+  display: none; /* Ensures it's hidden by default */
+  position: fixed; /* Make the modal fixed to the screen */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust positioning */
+  z-index: 1000; /* Ensure the modal is on top */
+  padding: 1rem; /* Padding around the modal content */
+  background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
+}
+
+/* Modal content styling */
+.modal1 .block {
+  background-color: #fff;
+  max-width: 700px;
+  margin: auto; /* Ensure content is centered */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Prevent overflow of content */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow */
+}
+
+/* Close button styling */
+.modal-cookies-close {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #d13639;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Hover effect on close button */
+.modal-cookies-close:hover {
+  background-color: #bc252a;
+}
